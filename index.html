@@ -5,75 +5,105 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Thala.css">
-    <script src="Thala.js" defer></script>
     <link rel="icon" type="image/png" href="pictures/Sikh-Khanda-Gold-and-blue-Round-symbol.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Is Thala the reason?</title>
 </head>
 
 <body>
-    <h1>To Thala or not to Thala, that's the question?</h1>
-    <br />
-    <div id="box">
-        <h3>Try to find the reason</h3>
-        <input id="box-txt" type="text" placeholder="Enter a word or a number..." onfocus="clearResult()">
-        <button class="box-btn" onclick="checkInput()">Submit</button>
-        <p>If you answer correctly<strong>5</strong>times in a row, you'll get a suprise!</p>
-    </div>
-    <div id="result"></div>
+    <div class="container">
+        <div class="container-title">
+            <h1>To Thala or not to Thala, that's the question?</h1>
+        </div>
 
-    <!-- New elements for GIF and audio -->
-    <div id="thalaGif" style="display: none;">
-        <iframe src="https://giphy.com/embed/2pVG9td6mpC2nakk8X" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-        <p><a href="https://giphy.com/gifs/msd-thala-for-a-reason-2pVG9td6mpC2nakk8X">via GIPHY</a></p>
+        <div id="resultDiv">
+        </div>
+        
+        <div class="container-box">
+            <div class="input-field">
+                <input id="box-txt" type="text" required onclick="clearResult()">
+                <label>Try to find the reason</label>
+                <button class="box-btn" onclick="checkInput()">Submit</button>
+            </div>
+            <p>If you answer correctly<strong> 5 </strong>times in a row, you'll get a suprise!</p>
+        </div>
+
+        <div class="container-hint">
+            <div id="hintDisplay">Hints remaining: <span id="hintCount">3</span></div>
+            <button id="hintButton" onclick="provideHint()">Click for Hints</button>
+            <div id="hintsContainer">
+            </div>
+        </div>
+
+        <div class="bottom-links">
+                <p>Made by Jugad</p>
+                <div class="border-between"></div>
+                <a href="https://github.com/JugadBoparai" target="blank">
+                    <img src="github-mark/github-mark.png" alt="github">
+                </a>
+        </div>
     </div>
-    <audio id="thalaAudio" controls>
-        <source src="audio/bole-jo-koyal-ms-dhoni-thala-theme.mp3" type="audio/mp3">
-    </audio>
 
 
-    <div id="notThalaGif" style="display: none;">
-        <iframe src="https://giphy.com/embed/3o7qDKcvuBPkUR85i0" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-        <p><a href="https://giphy.com/gifs/kingfisherworld-3o7qDKcvuBPkUR85i0">via GIPHY</a></p>
-    </div>
+        <!-- Pop-up for notThalaGif -->
+        <div id="notThalaGif">
+            <div class="modal-content">
+                <img src="pictures/notThalaGif.gif">
+                <div class="outer" onclick="closeNotThalaGif()">
+                    <div class="inner">
+                      <button id="notThalaGif-btn">Close</button> 
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+
+     <!-- New hidden box -->
+  <div id="hidden-box">
+        <span id="close-button"></span>
+        <h2>Congratulations!</h2>
+        <p>You've answered correctly 5 times consecutively. Here's the reason behind the game:</p>
+        <p>
+            The phrase "Thala for a reason" has become popular, especially among fans of MS Dhoni, 
+            the former Indian cricket captain. It's all about celebrating the number 7, which is closely 
+            associated with Dhoni. People online are creatively linking the number 7 to different aspects 
+            of life and nature as a way of honoring him. This includes things like mentioning 007 
+            (James Bond's code number), referencing the year 2023, or using words with exactly 7 letters.
+             Basically, anything related to the number 7 is seen as a tribute to Dhoni.
+        </p>
+        <!-- Pop-up for thalaGif -->
+        <div id="thalaGif" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="pictures/thalaGif.gif" alt="">
+            </div>
+        </div>
+  </div>
+  
+
+    <audio id="thalaAudio" src="audio/bole-jo-koyal-ms-dhoni-thala-theme.mp3" type="audio/mp3" preload="auto"></audio>
     <audio id="notThalaAudio0" src="audio/tomp3.cc - Angry Indian Scammer Sound Effect.mp3" type="audio/mp3" preload="auto"></audio>
     <audio id="notThalaAudio1" src="audio/MLG Sound Effect Screaming kid MW2 (HD).mp3" type="audio/mp3" preload="auto"></audio>
     <audio id="notThalaAudio2" src="audio/moye-moye.mp3" type="audio/mp3" preload="auto"></audio>
     <audio id="notThalaAudio3" src="audio/pookie-bear.mp3" type="audio/mp3" preload="auto"></audio>
     <audio id="notThalaAudio4" src="audio/y2mate_5gbydy1.mp3" type="audio/mp3" preload="auto"></audio>
 
-
-    <!-- Display remaining hints -->
-    <div id="hintDisplay">Hints remaining: <span id="hintCount">3</span></div>
-   
-    <!-- New div for displaying hints -->
-    <div id="hintsContainer"></div>
-
-    <!-- Button to request hints -->
-    <button id="hintButton" onclick="provideHint()">Click for Hints</button>
-
-     <!-- New hidden box -->
-  <div id="hiddenBox" style="display: none;">
-    <h2>Congratulations!</h2>
-    <p>You've answered correctly 5 times consecutively. Here's the reason behind the game:</p>
-    <p>
-        The viral 'Thala for a reason' trend, praising the notable number 7, 
-        has become synonymous with MS Dhoni's identity. The web is buzzing with
-        fans imaginatively connecting the number 7 to different components of 
-        life and nature, all to pay tribute to the former Indian cricket captain.
-        Consequently, whether it's writing 007, mentioning the year 2023,
-        or referencing Respect, these expressions share a common thread—each
-        somehow embodies the essence of 7. Even the numeric sums leading to 7
-        and the words with exactly 7 letters contribute to this thematic celebration.
-    </p>
-  </div>
-  
-
     <audio id="alertSoundSuccess" src="audio/mixkit-correct-answer-tone-2870.wav" preload="auto"></audio>
     <audio id="alertSoundFail" src="audio/mixkit-wrong-answer-fail-notification-946.wav" preload="auto"></audio>
     <audio id="alertSoundFinal" src="audio/mixkit-magic-notification-ring-2344.wav" preload="auto"></audio>
-    <audio id="Bole_jo_koyal" src="audio/bole-jo-koyal-ms-dhoni-thala-theme.mp3" preload="auto"></audio>
 </body>
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="jugadboparai" 
         data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18">
 </script>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('jugadboparai', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': '',
+    'floating-chat.donateButton.background-color': '#5F7FFF',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+<script src="Thala.js" defer></script>
+
 </html>
