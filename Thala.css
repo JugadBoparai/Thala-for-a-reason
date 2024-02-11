@@ -238,6 +238,15 @@ container-title {
 .bottom-links img {
   height: 25px;
 }
+#share-button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+}
+#share-icon {
+  height: 32px;
+}
 
 
 #hidden-box {
