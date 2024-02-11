@@ -263,4 +263,33 @@ function closeNotThalaGif(){
 }
 
 
+async function shareOnWhatsApp() {
+    const queryInput = document.getElementById("box-txt");
+    if (!queryInput) {
+        console.error("Element with ID 'box-txt' not found.");
+        return;
+    }
+
+    const queryValue = queryInput.value;
+    let urlWithQuery = `${window.location.origin}/`;
+
+    const encodedQuery = btoa(queryValue);
+    if (queryValue !== "") {
+        urlWithQuery = `${window.location.origin}/?query=${encodedQuery}`;
+    }
+
+    try {
+        const whatsAppText = encodeURIComponent(
+            `${urlWithQuery}`
+        );
+        const whatsappLink = `https://wa.me/?text=${whatsAppText}`;
+
+        // Open WhatsApp sharing window
+        window.open(whatsappLink, "_blank");
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error sharing on WhatsApp");
+    }
+}
+
 
