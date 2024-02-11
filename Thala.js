@@ -6,7 +6,6 @@ let consecutiveCorrectAttempts = 0;
 let previousAnswer = '';
 let hiddenCorrectAttempts = 0;
 
-
 let notThalaAudios = [
     document.getElementById('notThalaAudio0'),
     document.getElementById('notThalaAudio1'),
@@ -19,27 +18,38 @@ let notThalaAudios = [
 let alertSoundSuccess = document.getElementById('alertSoundSuccess');
 let alertSoundFail = document.getElementById('alertSoundFail');
 let alertSoundFinal = document.getElementById('alertSoundFinal');
-let bole_jo_koyal= document.getElementById('bole_jokoyal');
 
 // DOM elements
-let resultDiv = document.getElementById('result');
+let resultDiv = document.getElementById('resultDiv');
 let thalaGif = document.getElementById('thalaGif');
-let thalaAudio = document.getElementById('thalaAudio');
 let notThalaGif = document.getElementById('notThalaGif');
+let thalaAudio = document.getElementById('thalaAudio');
 let notThalaAudio = document.getElementById('notThalaAudio');
 
-
-function displayAttempts() {
-    // If attempts is 0, set it to 1 to ensure it's never displayed as 0
-    if (attempts === 0) {
-        attempts = 1;
-    }
-    resultDiv.innerHTML += `${previousAnswer} is correct!<br>Thala for a reason. You did it in ${attempts} attempts.`;
-    // Reset attempts for the next round
-    attempts = 0;
-    // Reset hints count in localStorage
-    localStorage.setItem('hintsRemaining', '3');
-}
+// Array of hints
+let hints = [
+    "What is Cristiano Ronaldo's number?",
+    "What is MS. Dhoni's number?",
+    "What is the Square of 4?",
+    "Shine bright like a _______?",
+    "How many prisoners did Guru Hargobind Sahib ji free from Gwalior Fort",
+    "In darkest night, I bring my light, hanging high, a guiding sight. What am I?",
+    "From the earth I grow, green and lean, a source of protein, a staple cuisine. What am I?",
+    "Rows of books in silent rows, knowledge and stories, they bestow. What am I?",
+    "What is the next number in the sequence: 2019, 2020, 2021, 2022, ____?",
+    "What is James Bond's code number?",
+    "What is the atomic number of Nitrogen on the periodic table?",
+    "Where do airplanes land and take off?",
+    "On icy cliffs, I perch with pride, with wings spread wide, I glide and glide. What am I?",
+    "What do you call a sibling who's not your sister?",
+    "I'm colorful and form a spectrum in the sky, what am I?",
+    "I have good style and great vision, what am I?",
+    "I'm a source of power, stored energy in a cell, I provide electricity, so your devices can dwell. What am i?",
+    "I'm a person in charge, steering a ship or a team, With authority and responsibility, I reign supreme. What am I?",
+    "Where does the magic happen?"
+];
+// Variable to track the last chosen hint
+let lastChosenHint = "";
 
 
 function checkInput() {
@@ -51,7 +61,7 @@ function checkInput() {
         if (alertSoundFail) {
             alertSoundFail.play();
         }
-        alert('You forgot to enter a value, silly!');
+        alert('You forgot to enter a value, stupid!');
         return;
     }
     
@@ -104,79 +114,64 @@ function checkInput() {
     attempts++;
 }
 
-
-
-
 function displayResult(isValid, userInput) {
     if (isValid) {
-        // Show the GIF and play the audio
-        thalaGif.style.display = 'block';
-        thalaAudio.play();
-        // Display attempts message
-        displayAttempts();
-        resultDiv.className = isValid ? 'correct' : 'incorrect';
+      // Show the GIF and play the audio
+      thalaAudio.play();
+      // Display attempts message
+      displayAttempts();
+      resultDiv.innerHTML = `${userInput} is a correct answer. Thala for a reason!`;
+      resultDiv.innerHTML += `<br>You did it in ${attempts} attempts.`;
+      resultDiv.classList.add('result-correct');
     } else {
-        notThalaGif.style.display = 'block';
-        // Choose a random audio element and play it
-        chooseRandomNotAudio().play();
-        resultDiv.innerHTML = `${userInput} is not the correct answer. Try again!`;
-        resultDiv.className = 'incorrect';
-        // Increment attempts regardless of the result
-        attempts++;
+      // Choose a random audio element and play it
+      notThalaGif.style.display = 'block';
+      chooseRandomNotAudio().play();
+      resultDiv.innerHTML = `${userInput} is not a correct answer. Try again!`;
+      resultDiv.classList.add('result-incorrect');
+      // Increment attempts regardless of the result
+      attempts++;
     }
 }
 
-
+function displayAttempts() {
+        // If attempts is 0, set it to 1 to ensure it's never displayed as 0
+        if (attempts === 0) {
+            attempts = 1;
+        }
+        // Reset attempts for the next round
+        attempts = 1;
+        // Reset hints count in localStorage
+        localStorage.setItem('hintsRemaining', '3');
+}
 
 function clearResult() {
-    console.log('Clearing result...');    
-    thalaGif.style.display = 'none';
-    thalaAudio.pause();
-    notThalaGif.style.display = 'none';
-    // Pause each audio element in the notThalaAudios array
-    notThalaAudios.forEach(audio => audio.pause());
-    resultDiv.textContent = '';
-    resultDiv.className = '';
-    console.log('Result cleared.');
+    console.log('Clearing result...');
+    // Check if resultDiv and other elements exist before accessing their properties
+    if (resultDiv && thalaGif && thalaAudio && notThalaGif && notThalaAudios) {
+        // Hide thalaGif and notThalaGif
+        thalaGif.style.display = 'none';
+        notThalaGif.style.display = 'none';
+        // Pause audio playback
+        thalaAudio.pause();
+        notThalaAudios.forEach(audio => audio.pause());
+        // Clear text content and reset class name
+        resultDiv.textContent = '';
+        resultDiv.className = '';
+        console.log('Result cleared.');
+    } else {
+        console.log('One or more elements not found.');
+    }
 }
 
-// Array of hints
-let hints = [
-    "What is Cristiano Ronaldo's number?",
-    "What MS. Dhoni's number?",
-    "How many days are in a week?",
-    "You silly boy, the hint is 7.",
-    "How many continents does the earth have?",
-    "How many books are in the Harry Potter series",
-    "How many wonders of the worlds are there?",
-    "How many colors are there in a rainbow?",
-    "What is the next number in the sequence: 2019, 2020, 2021, 2022, ____?",
-    "What is James Bond's code number?",
-    "What is the atomic number of Nitrogen on the periodic table?",
-    "Where do airplanes land and take off?",
-    "What do you call a solution to all of life's problems in a bottle?",
-    "What do you call a sibling who's not your sister?",
-    "I'm colorful and form a spectrum in the sky, what am I?",
-    "I'm a common fruit, yellow and curved. What am I?",
-    "What is the Milkyway?",
-    "I have good style and great vision, what am I?"
-];
 
-// Variable to track the last chosen hint
-let lastChosenHint = "";
-
-function chooseRandomHint() {
-    let availableHints = hints.filter(hint => hint !== lastChosenHint);
-    if (availableHints.length === 0) {
-        // All hints have been used, reset and shuffle the array
-        availableHints = hints.sort(() => Math.random() - 0.5);
-    }
-    // Select a random hint from the available hints
-    const randomIndex = Math.floor(Math.random() * availableHints.length);
-    const randomHint = availableHints[randomIndex];
-    // Update the last chosen hint
-    lastChosenHint = randomHint;
-    return randomHint;
+function chooseRandomNotAudio(){
+    // Get a random index from the array
+    let randomIndex = Math.floor(Math.random() * notThalaAudios.length);
+    // Get the randomly selected audio element
+    let randomAudio = notThalaAudios[randomIndex];
+    // Return the randomly selected audio element
+    return randomAudio;
 }
 
 
@@ -198,11 +193,22 @@ function provideHint() {
     } else if (hintsRemaining === 0) {
         // No more hints remaining, inform the user
         alertSoundFail.play();
-        alert('No more hints available.');
+        alert('No more hints available 😈');
     }
 }
-
-
+function chooseRandomHint() {
+    let availableHints = hints.filter(hint => hint !== lastChosenHint);
+    if (availableHints.length === 0) {
+        // All hints have been used, reset and shuffle the array
+        availableHints = hints.sort(() => Math.random() - 0.5);
+    }
+    // Select a random hint from the available hints
+    const randomIndex = Math.floor(Math.random() * availableHints.length);
+    const randomHint = availableHints[randomIndex];
+    // Update the last chosen hint
+    lastChosenHint = randomHint;
+    return randomHint;
+}
 function displayHintOnPage(hintText) {
     // Create a new paragraph element for each hint
     let hintParagraph = document.createElement('p');
@@ -215,33 +221,46 @@ function displayHintOnPage(hintText) {
 
 function displayHiddenBox() {
     alertSoundFinal.play();
+    
     // Show the hidden box
-    let hiddenBox = document.getElementById('hiddenBox');
+    let hiddenBox = document.getElementById('hidden-box');
     hiddenBox.style.display = 'block';
+    thalaAudio.pause();
+    thalaGif.style.display = 'block';
+
 
     // Add a close button to the hidden box
     let closeButton = document.createElement('span');
-    closeButton.id = 'closeButton';
+    closeButton.id = 'close-button';
     closeButton.innerHTML = '&times;'; // Close symbol (X)
 
     // Append the close button to the hidden box
     hiddenBox.appendChild(closeButton);
 
     // Add a click event listener to the close button
-    closeButton.addEventListener('click', function () {
+    closeButton.addEventListener('click', function() {
         // Hide the hidden box when the close button is clicked
         hiddenBox.style.display = 'none';
+        clearResult();
     });
 }
 
+function displayNotThalaGif() {
+    chooseRandomNotAudio().play();
 
-function chooseRandomNotAudio(){
-    // Get a random index from the array
-    let randomIndex = Math.floor(Math.random() * notThalaAudios.length);
-    // Get the randomly selected audio element
-    let randomAudio = notThalaAudios[randomIndex];
-    // Return the randomly selected audio element
-    return randomAudio;
+    // Get the notThalaGif modal element
+    let notThalaGifModal = document.getElementById('notThalaGif');
+
+    // Show the notThalaGif modal
+    notThalaGifModal.style.display = 'block';
+    closeNotThalaGif();    
 }
+
+function closeNotThalaGif(){
+    let notThalaGif = document.getElementById('notThalaGif')
+        notThalaGif.style.display = 'none';
+        clearResult();
+}
+
 
 
