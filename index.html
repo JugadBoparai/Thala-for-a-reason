@@ -22,7 +22,7 @@
         
         <div class="container-box">
             <div class="input-field">
-                <input id="box-txt" type="text" required onclick="clearResult()">
+                <input id="box-txt" type="text" name="query" onclick="clearResult()">
                 <label>Try to find the reason</label>
                 <button class="box-btn" onclick="checkInput()">Submit</button>
             </div>
@@ -42,6 +42,9 @@
                 <a href="https://github.com/JugadBoparai" target="blank">
                     <img src="pictures/github-mark.png" alt="github">
                 </a>
+                <button id="share-button" onclick="shareOnWhatsApp()">
+                    <img id="share-icon" src="pictures/whatsapp.png" alt="WhatsApp Icon">
+                </button> 
         </div>
     </div>
 
