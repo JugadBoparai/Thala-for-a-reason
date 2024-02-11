@@ -271,7 +271,7 @@ async function shareOnWhatsApp() {
     }
 
     const queryValue = queryInput.value;
-    let urlWithQuery = `${window.location.origin}/`;
+    let urlWithQuery = `${window.location.origin}/Thala-for-a-reason/`; // Add the path segment here
 
     const encodedQuery = btoa(queryValue);
     if (queryValue !== "") {
