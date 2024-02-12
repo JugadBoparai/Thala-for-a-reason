@@ -17,12 +17,21 @@
             <h1>To Thala or not to Thala, that's the question?</h1>
         </div>
 
+        
+        <div id="streakCircles">
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+        </div>
+        
         <div id="resultDiv">
         </div>
         
         <div class="container-box">
             <div class="input-field">
-                <input id="box-txt" type="text" name="query" onclick="clearResult()">
+                <input id="box-txt" type="text" name="query" required onclick="clearResult()" maxlength="255">
                 <label>Try to find the reason</label>
                 <button class="box-btn" onclick="checkInput()">Submit</button>
             </div>
@@ -37,7 +46,9 @@
         </div>
 
         <div class="bottom-links">
-                <p>Made by Jugad</p>
+                <button id="copy-button" onclick="copyLink()">
+                    <p>Made by Jugad</p>
+                </button>
                 <div class="border-between"></div>
                 <a href="https://github.com/JugadBoparai" target="blank">
                     <img src="pictures/github-mark.png" alt="github">
