@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Thala.css">
+    <link rel="icon" type="image/png" href="pictures/Sikh-Khanda-Gold-and-blue-Round-symbol.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Is Thala the reason?</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-title">
+            <h1>To Thala or not to Thala, that's the question?</h1>
+        </div>
+
+        
+        <div id="streakCircles">
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+            <div class="streakCircle"></div>
+        </div>
+        
+        <div id="resultDiv">
+        </div>
+        
+        <div class="container-box">
+            <div class="input-field">
+                <input id="box-txt" type="text" name="query" required onclick="clearResult()" onkeydown="if(event.key === 'Enter'){checkInput();}" maxlength="255">
+                <label>Try to find the reason</label>
+                <button class="box-btn" onclick="checkInput()">Submit</button>
+            </div>
+            <p>If you answer correctly<strong> 5 </strong>times in a row, you'll get a suprise!</p>
+        </div>
+
+        <div class="container-hint">
+            <div id="hintDisplay">Hints remaining: <span id="hintCount">3</span></div>
+            <button id="hintButton" onclick="provideHint()">Click for Hints</button>
+            <div id="hintsContainer">
+            </div>
+        </div>
+
+        <div class="bottom-links">
+                <button id="copy-button" onclick="copyLink()">
+                    <p>Made by Jugad</p>
+                </button>
+                <div class="border-between"></div>
+                <a href="https://github.com/JugadBoparai" target="blank">
+                    <img src="pictures/github-mark.png" alt="github">
+                </a>
+                <button id="share-button" onclick="shareOnWhatsApp()">
+                    <img id="share-icon" src="pictures/whatsapp.png" alt="WhatsApp Icon">
+                </button> 
+        </div>
+    </div>
+
+
+        <!-- Pop-up for notThalaGif -->
+        <div id="notThalaGif">
+            <div class="modal-content">
+                <img src="pictures/notThalaGif.gif">
+                <div class="outer" onclick="closeNotThalaGif()">
+                    <div class="inner">
+                      <button id="notThalaGif-btn">Close</button> 
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+
+     <!-- New hidden box -->
+  <div id="hidden-box">
+        <span id="close-button"></span>
+        <h2>Congratulations!</h2>
+        <p>You've answered correctly 5 times consecutively. Here's the reason behind the game:</p>
+        <p>
+            The phrase "Thala for a reason" has become popular, especially among fans of MS Dhoni, 
+            the former Indian cricket captain. It's all about celebrating the number 7, which is closely 
+            associated with Dhoni. People online are creatively linking the number 7 to different aspects 
+            of life and nature as a way of honoring him. This includes things like mentioning 007 
+            (James Bond's code number), referencing the year 2023, or using words with exactly 7 letters.
+             Basically, anything related to the number 7 is seen as a tribute to Dhoni.
+        </p>
+        <!-- Pop-up for thalaGif -->
+        <div id="thalaGif" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="pictures/thalaGif.gif" alt="">
+            </div>
+        </div>
+  </div>
+  
+
+    <audio id="thalaAudio" src="audio/bole-jo-koyal-ms-dhoni-thala-theme.mp3" type="audio/mp3" preload="auto"></audio>
+    <audio id="notThalaAudio0" src="audio/tomp3.cc - Angry Indian Scammer Sound Effect.mp3" type="audio/mp3" preload="auto"></audio>
+    <audio id="notThalaAudio1" src="audio/MLG Sound Effect Screaming kid MW2 (HD).mp3" type="audio/mp3" preload="auto"></audio>
+    <audio id="notThalaAudio2" src="audio/moye-moye.mp3" type="audio/mp3" preload="auto"></audio>
+    <audio id="notThalaAudio3" src="audio/pookie-bear.mp3" type="audio/mp3" preload="auto"></audio>
+    <audio id="notThalaAudio4" src="audio/y2mate_5gbydy1.mp3" type="audio/mp3" preload="auto"></audio>
+
+    <audio id="alertSoundSuccess" src="audio/mixkit-correct-answer-tone-2870.wav" preload="auto"></audio>
+    <audio id="alertSoundFail" src="audio/mixkit-wrong-answer-fail-notification-946.wav" preload="auto"></audio>
+    <audio id="alertSoundFinal" src="audio/mixkit-magic-notification-ring-2344.wav" preload="auto"></audio>
+</body>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="jugadboparai" 
+        data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18">
+</script>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('jugadboparai', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': '',
+    'floating-chat.donateButton.background-color': '#5F7FFF',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+<script src="Thala.js" defer></script>
+
+</html>
