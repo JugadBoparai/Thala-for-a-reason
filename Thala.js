@@ -22,7 +22,6 @@ document.querySelector('.hint-button')
 .addEventListener('click', () => {
     provideHint();
 });
-
 // Global variables
 let hintsRemaining = parseInt(localStorage.getItem('hintsRemaining')) || 3;
 let attempts = 0;
@@ -400,13 +399,3 @@ function ignoreSpaces(input) {
         return processedInput; // Otherwise, return the processed input without spaces
     }
 }
-
-
-
-
-
-
-
-
-
-
