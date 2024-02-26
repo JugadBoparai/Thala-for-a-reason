@@ -3,6 +3,25 @@ document.addEventListener("DOMContentLoaded", function() {
     updateStreakCircles();
 });
 
+document.querySelector('.box-btn')
+.addEventListener('click', () => {
+    checkInput();
+});
+
+document.querySelector('.box-txt')
+.addEventListener('click', () => {
+    clearResult();
+});
+
+document.querySelector('.box-txt')
+.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter'){checkInput();}
+});
+
+document.querySelector('.hint-button')
+.addEventListener('click', () => {
+    provideHint();
+});
 
 // Global variables
 let hintsRemaining = parseInt(localStorage.getItem('hintsRemaining')) || 3;

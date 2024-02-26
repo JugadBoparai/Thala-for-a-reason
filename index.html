@@ -31,16 +31,16 @@
         
         <div class="container-box">
             <div class="input-field">
-                <input id="box-txt" type="text" name="query" required onclick="clearResult()" onkeydown="if(event.key === 'Enter'){checkInput();}" maxlength="255">
+                <input id="box-txt" class="box-txt" type="text" name="query" required  maxlength="255">
                 <label>Try to find the reason</label>
-                <button class="box-btn" onclick="checkInput()">Submit</button>
+                <button class="box-btn">Submit</button>
             </div>
             <p>If you answer correctly<strong> 5 </strong>times in a row, you'll get a suprise!</p>
         </div>
 
         <div class="container-hint">
             <div id="hintDisplay">Hints remaining: <span id="hintCount">3</span></div>
-            <button id="hintButton" onclick="provideHint()">Click for Hints</button>
+            <button id="hintButton" class="hint-button">Click for Hints</button>
             <div id="hintsContainer">
             </div>
         </div>
